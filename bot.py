@@ -30,6 +30,6 @@ updater.dispatcher.add_handler(CommandHandler('weather', weather))
 updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
                       url_path=telegram_bot_token,
-                      webhook_url='https://good-morning-bot-01.herokuapp.com/' + telegram_bot_token)
+                      webhook_url='https://good-morning-bot-01.onrender.com/' + telegram_bot_token)
 
 #updater.bot.setWebhook('https://good-morning-bot-01.herokuapp.com/' + telegram_bot_token)
