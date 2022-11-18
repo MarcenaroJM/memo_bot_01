@@ -23,3 +23,4 @@ tzlocal==4.2
 urllib3==1.26.12
 Werkzeug
 wincertstore==0.2
+gunicorn
