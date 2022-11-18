@@ -8,14 +8,17 @@ from telegram.ext.filters import Filters
 from request_open_weather import get_ow_forecast
 
 import os
+import random
 
 telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
 
 updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=True)
 
 
+list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO"]
+
 def start(update: Update, context: CallbackContext):
-	update.message.reply_text("Hello there! Welcome to memo_bot")
+	update.message.reply_text(f"Buen día {random.choice(list_of_greets)}")
 
 def weather(update: Update, context: CallbackContext):
 	update.message.reply_text(get_ow_forecast())
