@@ -20,10 +20,10 @@ telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
 
 updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=True)
 
-
 list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO", "TITÁN"]
 
 def once(context: CallbackContext):
+    
     message = "Hello, this message will be sent only once"
     
     # send message to all users
@@ -35,7 +35,10 @@ def start(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id # Get user ID
     user_name = update.message.from_user.name # Get USERNAME
     r.set(user_name, user_id)
-	update.message.reply_text(f"Buen día {random.choice(list_of_greets)}")
+message = f"Buen día {random.choice(list_of_greets)}"
+    context.bot.send_message(chat_id=update.effective_chat.id, text=message)
+	
+#update.message.reply_text(f"Buen día {random.choice(list_of_greets)}")
 
 def weather(update: Update, context: CallbackContext):
 	update.message.reply_text(get_ow_forecast())
