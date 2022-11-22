@@ -35,7 +35,7 @@ def start(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id # Get user ID
     user_name = update.message.from_user.name # Get USERNAME
     r.set(user_name, user_id)
-message = f"Buen día {random.choice(list_of_greets)}"
+    message = f"Buen día {random.choice(list_of_greets)}"
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 	
 #update.message.reply_text(f"Buen día {random.choice(list_of_greets)}")
