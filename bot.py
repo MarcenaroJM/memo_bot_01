@@ -9,15 +9,32 @@ from request_open_weather import get_ow_forecast
 
 import os
 import random
+import redis
+
+r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the databse
+db_keys = r.keys(pattern='*')   # allows us to fetch data
+
+j = updater.job_queue # Scheduled messages
 
 telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
 
 updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=True)
 
 
-list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO"]
+list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO", "TITÁN"]
+
+def once(context: CallbackContext):
+    message = "Hello, this message will be sent only once"
+    
+    # send message to all users
+    for keys in db_keys:
+        id = r.get(keys).decode("UTF-8")
+        context.bot.send_message(chat_id=id, text=message)
 
 def start(update: Update, context: CallbackContext):
+    user_id = update.message.from_user.id # Get user ID
+    user_name = update.message.from_user.name # Get USERNAME
+    r.set(user_name, user_id)
 	update.message.reply_text(f"Buen día {random.choice(list_of_greets)}")
 
 def weather(update: Update, context: CallbackContext):
@@ -35,4 +52,4 @@ updater.start_webhook(listen="0.0.0.0",
                       url_path=telegram_bot_token,
                       webhook_url='https://good-morning-bot-01.onrender.com/' + telegram_bot_token)
 
-#updater.bot.setWebhook('https://good-morning-bot-01.herokuapp.com/' + telegram_bot_token)
+j.run_once(once, 30)
