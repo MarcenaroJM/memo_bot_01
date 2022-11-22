@@ -14,11 +14,12 @@ import redis
 r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the databse
 db_keys = r.keys(pattern='*')   # allows us to fetch data
 
-j = updater.job_queue # Scheduled messages
 
 telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
 
 updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=True)
+
+j = updater.job_queue # Scheduled messages
 
 list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO", "TITÁN"]
 
