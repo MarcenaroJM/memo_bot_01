@@ -57,7 +57,7 @@ def good_night(context: CallbackContext):
 
 j = updater.job_queue # Scheduled messages
 # j.run_once(once, 30)
-j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=02, minute=32, second=00))
+j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=2, minute=40, second=00))
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('weather', weather))
