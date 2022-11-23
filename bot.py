@@ -5,12 +5,12 @@ from telegram.ext.commandhandler import CommandHandler
 from telegram.ext.messagehandler import MessageHandler
 from telegram.ext.filters import Filters
 
-
 from request_open_weather import get_ow_forecast
 
 import os
 import random
 import redis
+import datetime
 # import logging
 
 # logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -47,9 +47,17 @@ def once(context: CallbackContext):
         id = r.get(keys).decode("UTF-8")
         context.bot.send_message(chat_id=id, text=message)
 
-j = updater.job_queue # Scheduled messages
+def good_night(context: CallbackContext):
+    
+    message = "Chau bro, que descanses"
+    # send message to all users
+    for keys in db_keys:
+        id = r.get(keys).decode("UTF-8")
+        context.bot.send_message(chat_id=id, text=message)
 
-j.run_once(once, 30)
+j = updater.job_queue # Scheduled messages
+# j.run_once(once, 30)
+job_daily = j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=00, second=00))
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('weather', weather))
