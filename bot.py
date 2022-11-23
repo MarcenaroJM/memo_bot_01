@@ -11,9 +11,9 @@ from request_open_weather import get_ow_forecast
 import os
 import random
 import redis
-import logging
+# import logging
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+# logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the databse
 db_keys = r.keys(pattern='*')   # allows us to fetch data

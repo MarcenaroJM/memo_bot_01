@@ -25,4 +25,3 @@ Werkzeug
 wincertstore==0.2
 gunicorn
 redis
-logging
