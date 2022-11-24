@@ -26,4 +26,3 @@ wincertstore==0.2
 gunicorn
 redis
 datetime
-pytz
