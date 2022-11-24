@@ -12,9 +12,6 @@ import random
 import redis
 import datetime
 import pytz
-# import logging
-
-# logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the databse
 db_keys = r.keys(pattern='*')   # allows us to fetch data
@@ -32,7 +29,7 @@ def start(context: CallbackContext):
     user_name = update.message.from_user.name # Get USERNAME
     r.set(user_name, user_id)
     
-    message = f"Buen día {random.choice(list_of_greets)}"
+    message = f"Hola {random.choice(list_of_greets)}, bienvenido al good-morning-bot!. Si te interesa, todos los días te puedo contar cómo va a estar el tiempo."
     
     for keys in db_keys:
         id = r.get(keys).decode("UTF-8")
@@ -66,8 +63,8 @@ def good_night(context: CallbackContext):
 
 j = updater.job_queue # Scheduled messages
 # j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=22, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
-j.run_daily(start, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=05, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
-j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=05, second=30, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(start, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=12, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=12, second=30, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('weather', weather))
