@@ -12,10 +12,10 @@ units = "metric"
 lang = "sp"
 n_timesteps = 9
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
 
-@app.route('/')
+# @app.route('/')
 def get_ow_forecast():
 	
 	# 5 day - 3 hour forecast
@@ -55,13 +55,13 @@ def get_ow_forecast():
 	# Turn all columns to numeric
 	df = df.apply(pd.to_numeric)
 
-	return f'La temperatura media para hoy es {df["temp"].mean():.1f} °C.'
+	return df, f'La temperatura media para hoy es {df["temp"].mean():.1f} °C.'
 
 
-# get_ow_forecast()
+print(get_ow_forecast())
 
-if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+# if __name__ == "__main__":
+#     port = int(os.environ.get('PORT', 5000))
+#     app.run(debug=True, host='0.0.0.0', port=port)
 
 
