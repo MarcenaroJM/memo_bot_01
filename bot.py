@@ -37,7 +37,7 @@ def start(update: Update, context: CallbackContext):
 
 def daily_message(context: CallbackContext):
 
-    message = f"Buen día {random.choice(list_of_greets)}. " + get_ow_forecast()
+    message = f"Buen día {random.choice(list_of_greets)}." + "\n" + get_ow_forecast()
     # send message to all users
     for keys in db_keys:
         id = r.get(keys).decode("UTF-8")
@@ -75,7 +75,7 @@ j = updater.job_queue # Scheduled messages
 # j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=22, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 # j.run_daily(start, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=12, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 # j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=12, second=30, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
-j.run_daily(daily_message, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=20, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(daily_message, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=35, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 # updater.dispatcher.add_handler(CommandHandler('weather', weather))
