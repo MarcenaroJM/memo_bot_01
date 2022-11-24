@@ -26,7 +26,7 @@ updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=
 list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO", "TITÁN"]
 
 
-def start(context: CallbackContext):
+def start(update: Update, context: CallbackContext):
     user_id = update.message.from_user.id # Get user ID
     user_name = update.message.from_user.name # Get USERNAME
     r.set(user_name, user_id)
@@ -37,7 +37,7 @@ def start(context: CallbackContext):
         id = r.get(keys).decode("UTF-8")
         context.bot.send_message(chat_id=id, text=message)
 	
-def weather(context: CallbackContext):
+def weather(update: Update, context: CallbackContext):
 	#update.message.reply_text(get_ow_forecast())
     message = get_ow_forecast()
     
@@ -64,8 +64,8 @@ def good_night(context: CallbackContext):
 
 j = updater.job_queue # Scheduled messages
 # j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=22, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
-j.run_daily(start, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=48, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
-j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=48, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(start, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=58, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=58, second=30, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('weather', weather))
