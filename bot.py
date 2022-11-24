@@ -33,8 +33,6 @@ def start(update: Update, context: CallbackContext):
     message = f"Buen día {random.choice(list_of_greets)}"
     context.bot.send_message(chat_id=update.effective_chat.id, text=message)
 	
-#update.message.reply_text(f"Buen día {random.choice(list_of_greets)}")
-
 def weather(update: Update, context: CallbackContext):
 	update.message.reply_text(get_ow_forecast())
 
@@ -57,8 +55,9 @@ def good_night(context: CallbackContext):
         context.bot.send_message(chat_id=id, text=message)
 
 j = updater.job_queue # Scheduled messages
-# j.run_once(once, 30)
-j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=22, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+# j.run_daily(good_night, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=22, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(start, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=30, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
+j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=22, minute=30, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('weather', weather))
