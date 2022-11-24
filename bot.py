@@ -29,7 +29,7 @@ def start(update: Update, context: CallbackContext):
     user_name = update.message.from_user.name # Get USERNAME
     r.set(user_name, user_id)
     
-    message = f"Hola {random.choice(list_of_greets)}, bienvenido al good-morning-bot!. Si te interesa, todos los días te puedo contar cómo va a estar el tiempo. Saludis"
+    message = f"Hola {random.choice(list_of_greets)}, bienvenido al good_morning_bot!. Si te interesa, todos los días te puedo contar cómo va a estar el tiempo. Saludis"
     update.message.reply_text(message)
     
 def daily_message(context: CallbackContext):
