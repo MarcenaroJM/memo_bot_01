@@ -54,7 +54,7 @@ def get_ow_forecast():
 	# Turn all columns to numeric
 	df = df.apply(pd.to_numeric)
 
-	return f"La temperatura media para hoy es {df["temp"].mean():.1f} °C."
+	return f'La temperatura media para hoy es {df["temp"].mean():.1f} °C.'
 
 
 # get_ow_forecast()
