@@ -9,12 +9,12 @@ from request_open_weather import get_ow_forecast
 
 import os
 import random
-import redis
+#import redis
 import datetime
 import pytz
 
-r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the database
-db_keys = r.keys(pattern='*')   # allows us to fetch data
+# r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the database
+# db_keys = r.keys(pattern='*')   # allows us to fetch data
 
 telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
 
@@ -45,11 +45,13 @@ list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO
 #def weather(context: CallbackContext):
 def weather(update: Update, context: CallbackContext):
 
-    message = get_ow_forecast()
+    message = f"Buen día {random.choice(list_of_greets)}." + "\n" + get_ow_forecast()
+    chat_id = update.effective_chat.id
+    context.bot.send_message(chat_id=chat_id, text=message)
     
-    for keys in db_keys:
-        id = r.get(keys).decode("UTF-8")
-        context.bot.send_message(chat_id=id, text=message)
+    # for keys in db_keys:
+    #     id = r.get(keys).decode("UTF-8")
+    #     context.bot.send_message(chat_id=id, text=message)
 
 # def once(context: CallbackContext):
     
