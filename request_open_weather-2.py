@@ -10,7 +10,7 @@ api_key = "cadad626f98ae037eae33b8e5f4af1dc" # Open Weather API Key
 city_name = "Buenos Aires"
 units = "metric"
 lang = "sp"
-n_timesteps = 9
+n_timesteps = 8
 
 # app = Flask(__name__)
 

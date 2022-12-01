@@ -10,7 +10,7 @@ api_key = "cadad626f98ae037eae33b8e5f4af1dc" # Open Weather API Key
 city_name = "Buenos Aires"
 units = "metric"
 lang = "sp"
-n_timesteps = 9
+n_timesteps = 8
 
 app = Flask(__name__)
 
@@ -54,7 +54,7 @@ def get_ow_forecast():
 	# Turn all columns to numeric
 	df = df.apply(pd.to_numeric)
 
-	return f'La temperatura media para hoy es {df["temp"].mean():.1f} °C.'
+	return 'En las proximas 24 hs se espera lo siguinete: ' + '\n' + f'La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C, {df["temp"].min():.1f} °C.'
 
 
 # get_ow_forecast()

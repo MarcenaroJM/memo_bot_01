@@ -45,7 +45,7 @@ list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO
 #def weather(context: CallbackContext):
 def weather(update: Update, context: CallbackContext):
 
-    message = f"Buen día {random.choice(list_of_greets)}." + "\n" + get_ow_forecast()
+    message = f"Hola {random.choice(list_of_greets)}!" + "\n" + get_ow_forecast()
     chat_id = update.effective_chat.id
     context.bot.send_message(chat_id=chat_id, text=message)
     
