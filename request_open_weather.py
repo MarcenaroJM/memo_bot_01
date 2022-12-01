@@ -54,7 +54,7 @@ def get_ow_forecast():
 	# Turn all columns to numeric
 	df = df.apply(pd.to_numeric)
 
-	return 'En las proximas 24 hs se espera lo siguinete: ' + '\n' + f'La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C, {df["temp"].min():.1f} °C.'
+	return 'En las proximas 24 hs se espera lo siguiente: ' + '\n' + f'La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C.'
 
 
 # get_ow_forecast()
