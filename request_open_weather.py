@@ -77,7 +77,7 @@ def get_ow_forecast():
         POP = f'- La maxima probabilidad de lluvia es del {df["POP"].max()} % a las {df["POP"].idxmax().strftime("%H:%M")} hs. Si salis, te recomiendo que lleves una campera o un paraguas.'
         
     
-    SUNRISE_SUNSET = f'Además, te cuento que hoy amaneció a las {datetime.datetime.fromtimestamp(x["city"]["sunrise"]).strftime("%H:%M")} hs y que va a oscurecer a las {datetime.datetime.fromtimestamp(x["city"]["sunset"]).strftime("%H:%M")} hs.'
+    SUNRISE_SUNSET = f'Además, te cuento que hoy amaneció a las {(datetime.datetime.fromtimestamp(x["city"]["sunrise"]) - pd.offsets.Hour(3)).strftime("%H:%M")} hs y que va a oscurecer a las {(datetime.datetime.fromtimestamp(x["city"]["sunset"]) - pd.offsets.Hour(3)).strftime("%H:%M")} hs.'
     
 
     return 'En las proximas 24 hs se espera lo siguiente: ' + '\n' + TEMP + '\n' +  HUMIDITY + '\n' + POP + '\n' + SUNRISE_SUNSET
