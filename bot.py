@@ -41,7 +41,6 @@ list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO
 #         context.bot.send_message(chat_id=id, text=message)
 
 	
-
 #def weather(context: CallbackContext):
 def weather(update: Update, context: CallbackContext):
 
