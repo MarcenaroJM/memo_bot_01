@@ -10,7 +10,7 @@ api_key = "cadad626f98ae037eae33b8e5f4af1dc" # Open Weather API Key
 city_name = "Buenos Aires"
 units = "metric"
 lang = "sp"
-n_timesteps = 8
+n_timesteps = 9
 
 app = Flask(__name__)
 
@@ -18,8 +18,6 @@ app = Flask(__name__)
 @app.route('/')
 def get_ow_forecast():
 	
-	def get_ow_forecast():
-    
     url = f"https://api.openweathermap.org/data/2.5/forecast?&q={city_name}&cnt={n_timesteps}&units={units}&lang={lang}&appid={api_key}"
 
     response = requests.get(url)
