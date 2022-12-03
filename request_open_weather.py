@@ -59,24 +59,24 @@ def get_ow_forecast():
     # Texts to return
     
     if df["temp"].max() >= 30.0 :
-        TEMP = f'La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C. Yo que vos me pongo algo fresco y me mantengo hidratado.'
+        TEMP = f'- La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C. Yo que vos me pongo algo fresco y me mantengo hidratado.'
 
     elif df["temp"].min() <= 10.0 :
-        TEMP = f'La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C. Abrigate! Yo que vos me pongo ese buzito que tanto te gusta.'
+        TEMP = f'- La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C. Abrigate! Yo que vos me pongo ese buzito que tanto te gusta.'
 
     else:
-        TEMP = f'La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C.'
+        TEMP = f'- La temperatura  máxima, media y mínima va a ser de {df["temp"].max():.1f} °C, {df["temp"].mean():.1f} °C y {df["temp"].min():.1f} °C.'
 
 
-    HUMIDITY = f'La humedad va estar entre {df["humidity"].min()}% y {df["humidity"].max()}%.'
+    HUMIDITY = f'- La humedad va estar entre {df["humidity"].min()}% y {df["humidity"].max()}%.'
     
     if (df["POP"] == 0).all() == True:
         
-        POP = "No esta previsto que llueva."
+        POP = "- No esta previsto que llueva."
     
     else:
         
-        POP = f'La maxima probabilidad de lluvia es del {df["POP"].max()} % a las {df["POP"].idxmax().strftime("%H:%M")} hs. Si salis, te recomiendo que lleves una campera o un paraguas.'
+        POP = f'- La maxima probabilidad de lluvia es del {df["POP"].max()} % a las {df["POP"].idxmax().strftime("%H:%M")} hs. Si salis, te recomiendo que lleves una campera o un paraguas.'
         
     
     SUNRISE_SUNSET = f'Además, te cuento que hoy amaneció a las {datetime.datetime.fromtimestamp(x["city"]["sunrise"]).strftime("%H:%M")} hs y que va a oscurecer a las {datetime.datetime.fromtimestamp(x["city"]["sunset"]).strftime("%H:%M")} hs.'
