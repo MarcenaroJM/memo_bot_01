@@ -23,14 +23,19 @@ updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=
 list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO", "TITÁN"]
 
 
-# def start(update: Update, context: CallbackContext):
+def start(update: Update, context: CallbackContext):
     
-#     user_id = update.message.from_user.id # Get user ID
-#     user_name = update.message.from_user.name # Get USERNAME
-#     r.set(user_name, user_id)
+
+    message = f"Hola {random.choice(list_of_greets)}, bienvenido al good_morning_bot!. Si te interesa, todos los días te puedo contar cómo va a estar el tiempo. Saludis"
+    chat_id = update.effective_chat.id
+    context.bot.send_message(chat_id=chat_id, text=message)
     
-#     message = f"Hola {random.choice(list_of_greets)}, bienvenido al good_morning_bot!. Si te interesa, todos los días te puedo contar cómo va a estar el tiempo. Saludis"
-#     update.message.reply_text(message)
+    # user_id = update.message.from_user.id # Get user ID
+    # user_name = update.message.from_user.name # Get USERNAME
+    # r.set(user_name, user_id)
+    
+    # message = f"Hola {random.choice(list_of_greets)}, bienvenido al good_morning_bot!. Si te interesa, todos los días te puedo contar cómo va a estar el tiempo. Saludis"
+    # update.message.reply_text(message)
     
 # def daily_message(context: CallbackContext):
 
@@ -76,11 +81,11 @@ def weather(update: Update, context: CallbackContext):
 # j.run_daily(weather, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=23, minute=12, second=30, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 # j.run_daily(daily_message, days=(0, 1, 2, 3, 4, 5, 6), time=datetime.time(hour=8, minute=0, second=00, tzinfo=pytz.timezone("America/Argentina/Buenos_Aires")))
 
-# updater.dispatcher.add_handler(CommandHandler('start', start))
+updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CommandHandler('weather', weather))
 
 # If the application runs locally:
-#updater.start_polling()
+# updater.start_polling()
 
 # Deploy the app:
 updater.start_webhook(listen="0.0.0.0",
