@@ -16,9 +16,11 @@ import pytz
 # r = redis.from_url("redis://red-cdu0mopa6gdv3sp5q8bg:6379") # connection to the database
 # db_keys = r.keys(pattern='*')   # allows us to fetch data
 
-telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
+# telegram_bot_token = "5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg"
 
-updater = Updater("5658759506:AAEMEiLNPRLXKKX3Z0IZ9ZK1s1xuBGeqfqg", use_context=True)
+telegram_bot_token = "5894049882:AAHxko6AcoTLSUU7ghe10J0-3g1faRKL5Fs"
+
+updater = Updater(telegram_bot_token, use_context=True)
 
 list_of_greets = ["GENIO", "FACHA", "MÁQUINA", "BEAR", "ANIMAL", "ÍDOLO", "OSO", "CRACK", "CAPO", "TITÁN"]
 
@@ -87,7 +89,7 @@ updater.dispatcher.add_handler(CommandHandler('weather', weather))
 # If the application runs locally:
 # updater.start_polling()
 
-# Deploy the app:
+# # Deploy the app:
 updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
                       url_path=telegram_bot_token,
